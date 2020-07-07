@@ -1,0 +1,236 @@
+@media (min-width: 576px) {
+
+    .hero-backpack {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-window {
+        max-height: 450px;
+        min-width: 150px;
+        flex-direction: column;
+        max-width: 150px;
+        border-left: 1rem solid;
+    }
+
+    .hero-main {
+        height: auto;
+    }
+
+    .right-side {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .hero-backpack {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-window {
+        flex-direction: row;
+        border-top: 1.2rem solid;
+    }
+
+    .hero-main {
+        height: 15vh;
+    }
+}
+
+@keyframes doFlipAbility {
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes doBackFlipAbility {
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes toBig {
+    10% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    75% {
+        transform: scale(1);
+    }
+}
+
+@keyframes changeOpacity {
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.hero {
+
+    &-window {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-color: transparent;
+        border-image: url("../img/templates/bricks_background.jpg") 120 90 round round;
+        background-color: #000;
+
+        @media (min-height: 450px) and (min-width: 576px) {
+            border: 1rem solid;
+            border-right: none;
+            border-image: url("../img/templates/bricks_background.jpg") 120 90 round round;
+        }
+    }
+
+    &-avatar {
+        width: 100%;
+        height: 30%;
+
+        @media (max-width: 576px) {
+            width: 22%;
+            height: 100%;
+        }
+    }
+
+    &-stats {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #000;
+
+        @media (max-width: 576px) {
+            width: 22%;
+            height: 100%;
+        }
+
+        &-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-icon {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+    }
+
+    &-ability {
+        width: 100%;
+        height: 30%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 1%;
+        cursor: pointer;
+        perspective: 500px;
+
+        @media (max-width: 576px) {
+            width: 22%;
+            height: 100%;
+        }
+
+        &-placeholder {
+            transform-style: preserve-3d;
+            position: relative;
+            animation-fill-mode: forwards;
+
+            &.closed {
+                transform: rotateY(180deg);
+            }
+
+            &.flip {
+                animation: doFlipAbility 0.5s linear;
+            }
+
+            &.backflip {
+                animation: doBackFlipAbility 0.5s linear;
+            }
+        }
+
+        &-img {
+            height: 100%;
+            width: 100%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            &.back {
+                transform: rotateY(-180deg);
+            }
+
+            &.front {
+                &.active {
+                    animation: fly 1s linear infinite;
+                }
+
+                &.none {
+                    animation: shakeNo 0.8s linear;
+                }
+            }
+        }
+    }
+
+    &-backpack {
+        width: 100%;
+        height: 20%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1%;
+
+        @media (max-width: 576px) {
+            width: 34%;
+            height: 100%;
+        }
+
+        &-slot {
+            cursor: pointer;
+            width: 100%;
+        }
+
+        &-inshop {
+            height: 100%;;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1%;
+
+            &-slot {
+                cursor: pointer;
+                height: 100%;
+                //width: 100%;
+            }
+        }
+
+    }
+
+
+}

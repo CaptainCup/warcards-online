@@ -1,0 +1,257 @@
+@media (max-width: 900px) {
+    .menu-chain {
+        width: 4vw;
+    }
+}
+
+@media (min-width: 900px) {
+    .menu-chain {
+        width: 2vw;
+    }
+}
+
+@keyframes menuDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes menuUp {
+    to {
+        transform: translateY(-100vh);
+    }
+}
+
+.game-name {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+    font-size: 8vw;
+    color: #d8aa2d;
+    opacity: 0;
+    animation: welcomeBegin 1s linear;
+    animation-fill-mode: forwards;
+}
+
+.with-borders {
+    border: 1.2rem solid;
+    border-color: transparent;
+    border-image: url("../img/templates/bricks_background.jpg") 120 90 round round;
+
+    &.left {
+        border-left: 0.5rem solid;
+    }
+
+    &.right {
+        border-right: 0.5rem solid;
+    }
+
+    &.top {
+        border-top: 0.5rem solid;
+    }
+
+    &.bottom {
+        border-bottom: 0.5rem solid;
+    }
+}
+
+.game-menu {
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: 70%;
+
+    &-window {
+        position: relative;
+        background-color: rgb(25, 25, 25);
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+
+        &.main {
+            max-width: 600px;
+        }
+
+        &.start {
+            transform: translateY(-100vh);
+        }
+
+        &.up {
+            animation-name: menuUp;
+        }
+
+        &.down {
+            animation-name: menuDown;
+        }
+    }
+
+    &-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+    }
+
+    &-arrow {
+        height: 1.5rem;
+        width: 1.5rem;
+        cursor: pointer;
+        background-image: url('../img/icons/menu_arrow.png');
+        background-size: cover;
+
+        &.inactive {
+            opacity: 0.5;
+        }
+
+        &.arrow-left {
+            left: 0%;
+            transform: rotate(180deg);
+        }
+
+        &.arrow-right {
+            right: 0%;
+        }
+    }
+}
+
+.menu-chain {
+    position: absolute;
+    top: 0;
+    height: 50vh;
+    transform: translateY(-100%);
+    background-image: url("../img/templates/chain.png");
+    background-repeat: repeat-y;
+    background-size: contain;
+
+    &.left {
+        left: 5vw;
+    }
+
+    &.right {
+        right: 5vw;
+    }
+}
+
+/*.choose_hero {
+    width: 100%;
+    height: 15vh;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}*/
+
+.hero-swiper {
+    height: 6rem;
+    width: 6rem;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.hero-frame {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: right 1s;
+}
+
+.learn_swiper {
+    width: 80vw;
+    height: 70vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &_body {
+        height: 100%;
+        width: 80%;
+        position: relative;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    &_frame {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &.first {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            & .text {
+                text-align: center;
+                font-size: 1rem;
+            }
+        }
+
+        &.second {
+            display: grid;
+            grid-template-rows: 1fr 2fr 2fr 2fr;
+            grid-template-columns: 1fr 3fr;
+            grid-row-gap: 2vh;
+
+            & .title {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+
+        }
+
+        &.third {
+            display: grid;
+            grid-template-rows: 1fr 2fr 2fr;
+            grid-template-columns: 1fr 3fr;
+            grid-row-gap: 2vh;
+
+            & .title {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+
+        }
+
+        &.fourth {
+            display: grid;
+            grid-template-rows: 1fr 2fr 2fr 2fr;
+            grid-template-columns: 1fr 3fr;
+            grid-row-gap: 2vh;
+
+            & .title {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        }
+
+        &.fifth {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        & .img {
+                height: 5vh;
+                width: 5vw;
+            }
+
+        & .title {
+            font-size: 1.5rem;
+        }
+
+        & .text {
+            text-align: justify;
+            font-size: 0.7rem;
+        }
+    }
+}

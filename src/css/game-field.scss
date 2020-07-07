@@ -1,0 +1,280 @@
+@media (min-width: 576px) {
+
+    .row-field {
+        flex-direction: row;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .row-field {
+        flex-direction: column;
+    }
+
+}
+
+@keyframes doFlip {
+    50% {
+        transform: rotateY(90deg) scale(1.2);
+    }
+
+    to {
+        transform: rotateY(180deg) scale(1);
+    }
+}
+
+@keyframes doBackFlip {
+    50% {
+        transform: rotateY(90deg) scale(1.2);
+    }
+
+    to {
+        transform: rotateY(0deg) scale(1);
+    }
+}
+
+@keyframes toSmall {
+    from {
+        transform: scale(10);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    20% {
+        transform: rotateZ(3deg) rotateX(10deg);
+    }
+
+    40% {
+        transform: rotateZ(-3deg) rotateX(-10deg);
+    }
+
+    60% {
+        transform: rotateZ(3deg) rotateX(-10deg);
+    }
+
+    80% {
+        transform: rotateZ(-3deg) rotateX(10deg);
+    }
+}
+
+@keyframes shakeNo {
+    33% {
+        transform: rotateY(180deg) rotateZ(8deg);
+    }
+
+    66% {
+        transform: rotateY(180deg) rotateZ(-8deg);
+    }
+}
+
+@keyframes grow {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fly {
+    50% {
+        transform: rotateY(-180deg) scale(1.1);
+    }
+}
+
+.game-field-side {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-field {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13vh, 1fr));
+    grid-gap: 2vw;
+}
+
+.new-wave {
+    display: inline-block;
+    text-align: center;
+    font-size: 6vh;
+    animation: toSmall 0.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+/*.execute {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    transition: opacity 1s;
+
+    &_text {
+        height: 30%;
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("../img/heroes/abilities/warrior_ability.jpg");
+        background-size: 100% 100%;
+        color: #8e3333;
+        font-size: 6vh;
+        text-transform: uppercase;
+        animation: toSmall 0.5s ease-out;
+        animation-fill-mode: forwards;
+        z-index: 1000;
+    }
+}*/
+
+.card-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    perspective: 1000px;
+}
+
+.card-flipper {
+        height: 150px;
+        width: 150px;
+        position: relative;
+        transform-style: preserve-3d;
+        animation-fill-mode: forwards;
+
+        &.open {
+            transform: rotateY(180deg);
+        }
+
+        &.flip {
+            animation: doFlip 0.5s linear;
+        }
+
+        &.backflip {
+            animation: doBackFlip 0.5s linear;
+        }
+
+        &.wrong {
+            animation: shakeNo 0.5s linear;
+            }
+
+        &.correct {
+            transition: opacity 0.5s;
+            opacity: 0;
+            animation: grow 1s linear;
+        }
+
+        &.hidden {
+            visibility: hidden;
+        }
+}
+
+.card-img {
+    transform-style: preserve-3d;
+    cursor: grab;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.back {
+        z-index: 2;
+    }
+
+    &.front {
+        transform: rotateY(-180deg);
+
+        &.active {
+        animation: fly 1s linear infinite;
+        }
+
+        
+        &.none {
+        animation: shakeNo 0.5s linear;
+        }
+    }
+}
+
+.card {
+    &-stats {
+        position: absolute;
+        bottom: 47%;
+        height: 15%;
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        background-size: 100% 100%;
+        color: #000;
+
+        &.health {
+            left: 0;
+            background-image: url("../img/icons/health.png");
+        }
+
+        &.armor {
+            right: 0;
+            background-image: url("../img/icons/armor.png");
+        }
+    }
+
+    &-top {
+        width: 100%;
+        height: 45%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("../img/cards/footman.jpg");
+        background-size: 100% 100%;
+    }
+
+    &-bottom {
+        width: 100%;
+        height: 55%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-image: url("../img/templates/background.jpg");
+        background-size: 100% 100%;
+    }
+
+    &-name {
+        display: inline-block;
+        font-size: 70%;
+        width: 100%;
+        padding: 0 20%;
+        text-align: center;
+        color: #000;
+    }
+
+    &-desc {
+        height: 100%;
+        width: 100%;
+        padding: 0 13%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 60%;
+        text-align: center;
+        color: #000;
+    }
+}
+
+.new-wave {
+    font-size: 6vh;
+    animation: toSmall 0.5s ease-out;
+    animation-fill-mode: forwards;
+}

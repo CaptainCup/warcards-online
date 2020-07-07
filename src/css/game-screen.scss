@@ -1,0 +1,18 @@
+.game-frame {
+    position: relative;
+    background-color: #ccb275;
+    background-image: url("../img/maps/map1.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.row-field {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+@import 'hero-window.scss';
+@import 'game-field.scss';
+@import 'shop.scss';
